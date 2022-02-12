@@ -1,4 +1,6 @@
-package repositories;
+package repositories.interfaces;
+
+import models.Product;
 
 import java.util.List;
 

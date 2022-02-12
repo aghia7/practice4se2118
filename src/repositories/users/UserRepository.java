@@ -1,19 +1,17 @@
 package repositories.users;
 
 import data.DB;
-import data.postgres.Postgres;
 import models.User;
-import repositories.EntityRepository;
+import repositories.interfaces.IUserRepository;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class UserRepository implements EntityRepository<User> {
+public class UserRepository implements IUserRepository {
     private final DB db;
 
     public UserRepository(DB db) {

@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
     private static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        DB db = new Postgres();
+        DB db = Postgres.getInstance();
         IUserRepository userRepo = new UserRepository(db);
         IProductRepository productRepo = new ProductRepository(db);
 

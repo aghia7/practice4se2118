@@ -2,8 +2,6 @@ import controllers.ProductController;
 import controllers.UserController;
 import data.DB;
 import data.postgres.Postgres;
-import models.User;
-import repositories.interfaces.EntityRepository;
 import repositories.interfaces.IProductRepository;
 import repositories.interfaces.IUserRepository;
 import repositories.products.ProductRepository;

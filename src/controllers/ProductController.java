@@ -1,9 +1,7 @@
 package controllers;
 
 import models.Product;
-import models.User;
 import repositories.interfaces.IProductRepository;
-import repositories.interfaces.IUserRepository;
 
 import java.util.List;
 
@@ -14,13 +12,63 @@ public class ProductController {
         this.productRepo = productRepo;
     }
 
-    //methods
-    public String getByCategory(String category) {
-        List<Product> products = productRepo.getByCategory(category);
-        String response = "";
-        for (Product product : products)
-            response += product + "\n";
+    public String create(String name, String category, double price) {
+        Product product = new Product(name, category, price);
 
-        return response;
+        boolean created = productRepo.create(product);
+
+        if (created)
+            return "A new product " + name + " was created successfully!";
+
+        return "Product cannot be created!";
+    }
+
+    public String getById(int id) {
+        Product product = productRepo.get(id);
+
+        if (product == null)
+            return "Product with id = " + id + " does not exist!";
+
+        return product.toString();
+    }
+
+    public String removeById(int id) {
+        Product product = productRepo.get(id);
+
+        if (product == null)
+            return "Product with id = " + id + " does not exist!";
+
+        boolean removed = productRepo.delete(id);
+
+        if (removed)
+            return "Product " + product.getName() + " was removed successfully!";
+
+        return "Product cannot be removed!";
+    }
+
+    public String getAll() {
+        List<Product> products = productRepo.getAll();
+
+        if (products.isEmpty())
+            return "Product`s list is empty";
+
+        StringBuilder response = new StringBuilder();
+        for (Product product : products)
+            response.append(product).append("\n");
+
+        return response.toString();
+    }
+
+    public String getAllByCategory(String category) {
+        List<Product> products = productRepo.getByCategory(category);
+
+        if (products.isEmpty())
+            return "Product`s list is empty";
+
+        StringBuilder response = new StringBuilder();
+        for (Product product : products)
+            response.append(product).append("\n");
+
+        return response.toString();
     }
 }
